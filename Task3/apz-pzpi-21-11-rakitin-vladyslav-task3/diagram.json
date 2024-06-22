@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "author": "Vlad Rakitin",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 4.7, "left": 4.6, "attrs": {} },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc1",
+      "top": 11.7,
+      "left": 133.9,
+      "rotate": 90,
+      "attrs": { "temperature": "36.6" }
+    },
+    {
+      "type": "wokwi-ky-040",
+      "id": "encoder1",
+      "top": 22.2,
+      "left": -152.3,
+      "rotate": 90,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "ntc1:GND", "black", [ "h0" ] ],
+    [ "ntc1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "encoder1:SW", "uno:4", "purple", [ "h0" ] ],
+    [ "encoder1:DT", "uno:3", "green", [ "h0" ] ],
+    [ "encoder1:CLK", "uno:2", "blue", [ "h0" ] ],
+    [ "uno:5V", "encoder1:VCC", "red", [ "v32", "h139", "v0" ] ],
+    [ "uno:GND.2", "encoder1:GND", "black", [ "v21", "h118", "v0" ] ],
+    [ "encoder1:VCC", "esp:VIN", "red", [ "v0" ] ],
+    [ "encoder1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "esp:D13", "encoder1:SW", "green", [ "h0" ] ],
+    [ "encoder1:DT", "esp:D12", "green", [ "v0" ] ],
+    [ "esp:D14", "encoder1:CLK", "green", [ "h0" ] ],
+    [ "esp:D33", "ntc1:OUT", "green", [ "h-19.2", "v-96", "h134.4", "v124.8" ] ]
+  ],
+  "dependencies": {}
+}
